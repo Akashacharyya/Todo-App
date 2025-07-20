@@ -3,7 +3,8 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet],  // ✅ Removed Todo from here
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

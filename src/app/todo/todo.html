@@ -1,0 +1,38 @@
+<div class="todo-container">
+  <h1>Todo App</h1>
+
+  <div class="input-container">
+    <input
+      class="todo-input"
+      [value]="newTodo()"
+      (input)="newTodo.set($any($event.target).value)"
+      placeholder="Add a new task"
+    />
+    <button class="add-btn" (click)="addTodo()">Add</button>
+  </div>
+
+  <div class="filter-buttons">
+    <button (click)="setFilter('all')" [class.active]="filter() === 'all'">All</button>
+    <button (click)="setFilter('active')" [class.active]="filter() === 'active'">Active</button>
+    <button (click)="setFilter('completed')" [class.active]="filter() === 'completed'">Completed</button>
+  </div>
+
+  <ul class="todo-list">
+    <li *ngFor="let todo of filteredTodos; index as i" [class.completed]="todo.completed">
+      <div class="todo-text" (click)="toggleComplete(i)">
+        <input type="checkbox" [checked]="todo.completed" />
+        <div class="task-content">
+          <span class="task-main">{{ todo.text }}</span>
+          <span class="date-text">Added on: {{ todo.createdAt }}</span>
+        </div>
+      </div>
+      <button class="delete-btn" (click)="deleteTodo(i)">Delete</button>
+    </li>
+  </ul>
+
+  <div class="footer">
+    <p>Tasks left: {{ activeCount }}</p>
+    <button class="clear-btn" (click)="clearCompleted()">Clear Completed</button>
+  </div>
+</div>
+
